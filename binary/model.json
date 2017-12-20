@@ -1,0 +1,170 @@
+{
+  "dlllist": {
+    "name": "dlllist",
+    "columns": [
+      {
+        "name": "base",
+        "options": null,
+        "type": 0,
+        "field": [
+          "base",
+          "target"
+        ]
+      },
+      {
+        "name": "size",
+        "options": null,
+        "type": 0,
+        "field": [
+          "size"
+        ]
+      },
+      {
+        "name": "reason",
+        "options": null,
+        "type": 1,
+        "field": [
+          "reason"
+        ]
+      },
+      {
+        "name": "dll_path",
+        "options": null,
+        "type": 1,
+        "field": [
+          "dll_path"
+        ]
+      }
+    ]
+  },
+  "netscan": {
+    "name": "netscan",
+    "columns": [
+      {
+        "name": "prot",
+        "options": null,
+        "type": 1,
+        "field": [
+          "protocol"
+        ]
+      },
+      {
+        "name": "local",
+        "options": null,
+        "type": 1,
+        "field": [
+          "local_addr"
+        ]
+      },
+      {
+        "name": "remote",
+        "options": [
+          "filter"
+        ],
+        "type": 1,
+        "field": [
+          "remote_addr"
+        ]
+      },
+      {
+        "name": "state",
+        "options": null,
+        "type": 1,
+        "field": [
+          "state"
+        ]
+      },
+      {
+        "name": "pid",
+        "options": [
+          "query dlllist"
+        ],
+        "field": [
+          "pid"
+        ]
+      },
+      {
+        "name": "owner",
+        "options": null,
+        "type": 1,
+        "field": [
+          "owner"
+        ]
+      },
+      {
+        "name": "created",
+        "options": null,
+        "type": 1,
+        "field": [
+          "created",
+          "string_value"
+        ]
+      }
+    ]
+  },
+  "pslist": {
+    "name": "pslist",
+    "columns": [
+      {
+        "name": "_EPROCESS",
+        "options": null,
+        "type": 0,
+        "field": [
+          "_EPROCESS",
+          "offset"
+        ]
+      },
+      {
+        "name": "fullpath",
+        "options": [
+          "filter"
+        ],
+        "type": 1,
+        "field": [
+          "_EPROCESS",
+          "Cybox",
+          "Image_Info",
+          "Command_Line"
+        ]
+      },
+      {
+        "name": "pid",
+        "options": [
+          "query dlllist"
+        ],
+        "field": [
+          "_EPROCESS",
+          "Cybox",
+          "PID"
+        ]
+      },
+      {
+        "name": "ppid",
+        "options": [
+          "query dlllist"
+        ],
+        "field": [
+          "ppid"
+        ]
+      },
+      {
+        "name": "process_create_time",
+        "options": null,
+        "type": 1,
+        "field": [
+          "process_create_time",
+          "string_value"
+        ]
+      },
+      {
+        "name": "process_exit_time",
+        "options": null,
+        "type": 1,
+        "field": [
+          "process_exit_time",
+          "string_value"
+        ]
+      }
+    ]
+  }
+}
