@@ -31,10 +31,12 @@ default.json
 
 Defines the representation of the Rekall output along with filter and query options. Available options:
 
-query <rekall command>: executes given Rekall command (along with the field value):
+* query &lt;rekall command&gt;: executes given Rekall command (along with the field value):
+  
   ![](images/Query.png)
   
-filter: allows to add/remove value to `known` list and automatically marks unknown values:
+* filter: allows to add/remove value to `known` list and automatically marks unknown values:
+
   ![](images/Filter.png)
 
 model.json
