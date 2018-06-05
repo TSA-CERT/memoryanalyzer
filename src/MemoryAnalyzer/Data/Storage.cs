@@ -1,5 +1,4 @@
-﻿using MemoryAnalyzer.Data;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Web.Script.Serialization;
@@ -32,38 +31,6 @@ namespace MemoryAnalyzer
         {
             known = new Dictionary<string, List<string>>();
             json = new JavaScriptSerializer();
-        }
-
-        /// <summary>
-        /// Tries to load configured models
-        /// </summary>
-        /// <returns></returns>
-        public Dictionary<string, RekallModel> GetModel()
-        {
-            Dictionary<string, RekallModel> list;
-            string jsonString = null;
-            try
-            {
-                jsonString = File.ReadAllText(MODEL_FILE_NAME);
-                list = json.Deserialize<Dictionary<string, RekallModel>>(jsonString);
-            }
-            catch (Exception ex)
-            {
-                // failed to read
-                Console.WriteLine(ex);
-                list = new Dictionary<string, RekallModel>();
-            }
-            return list;
-        }
-
-        /// <summary>
-        /// Stores supplied model
-        /// </summary>
-        /// <param name="model"></param>
-        public void StoreModel(Dictionary<string, RekallModel> model)
-        {
-            string jsonString = json.Serialize(model);
-            File.WriteAllText(MODEL_FILE_NAME, jsonString);
         }
 
         /// <summary>
@@ -132,6 +99,18 @@ namespace MemoryAnalyzer
                 known.Add(field, list);
                 return list;
             }
+        }
+
+        public List<string> Profiles = new List<string>();
+
+        internal void ClearProfiles()
+        {
+            Profiles.Clear();
+        }
+
+        internal void AddProfile(string profile)
+        {
+            Profiles.Add(profile);
         }
 
         /// <summary>

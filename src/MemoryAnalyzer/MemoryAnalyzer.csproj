@@ -37,10 +37,32 @@
   <PropertyGroup>
     <ApplicationIcon>MemoryAnalyzer.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.SQLite, Version=1.0.108.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\System.Data.SQLite\2015\bin\System.Data.SQLite.dll</HintPath>
+    </Reference>
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.Extensions" />
@@ -48,38 +70,67 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\RekallModel.cs" />
-    <Compile Include="Forms\ImageSelection.cs">
+    <Compile Include="Analyzer\CommandExecutioner.cs" />
+    <Compile Include="Analyzer\VolatilityExecutioner.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="Controls\AnalysisCommand.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\AnalysisCommand.Designer.cs">
+      <DependentUpon>AnalysisCommand.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\AnalysisOverview.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\AnalysisOverview.Designer.cs">
+      <DependentUpon>AnalysisOverview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\IControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Data\Command.cs" />
+    <Compile Include="Data\Helper.cs" />
+    <Compile Include="Analyzer\CommandQueue.cs" />
+    <Compile Include="Forms\Home.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\ImageSelection.Designer.cs">
-      <DependentUpon>ImageSelection.cs</DependentUpon>
+    <Compile Include="Forms\Home.Designer.cs">
+      <DependentUpon>Home.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\MemoryAnalyzer.cs">
+    <Compile Include="Forms\LogOutput.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\MemoryAnalyzer.Designer.cs">
-      <DependentUpon>MemoryAnalyzer.cs</DependentUpon>
+    <Compile Include="Forms\LogOutput.Designer.cs">
+      <DependentUpon>LogOutput.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Settings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Settings.Designer.cs">
+      <DependentUpon>Settings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Analysis.cs" />
+    <Compile Include="Model\CommandNode.cs" />
+    <Compile Include="Model\AnalysisNode.cs" />
+    <Compile Include="Model\INode.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Controls\RekallControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\RekallControl.Designer.cs">
-      <DependentUpon>RekallControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\RekallJsonControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Data\RekallCommand.cs" />
     <Compile Include="Data\Storage.cs" />
     <Compile Include="Utils.cs" />
-    <EmbeddedResource Include="Forms\ImageSelection.resx">
-      <DependentUpon>ImageSelection.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\AnalysisCommand.resx">
+      <DependentUpon>AnalysisCommand.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\MemoryAnalyzer.resx">
-      <DependentUpon>MemoryAnalyzer.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\AnalysisOverview.resx">
+      <DependentUpon>AnalysisOverview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Home.resx">
+      <DependentUpon>Home.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\LogOutput.resx">
+      <DependentUpon>LogOutput.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Settings.resx">
+      <DependentUpon>Settings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -91,9 +142,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Controls\RekallControl.resx">
-      <DependentUpon>RekallControl.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

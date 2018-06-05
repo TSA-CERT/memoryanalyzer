@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MemoryAnalyzer.Forms;
+using System;
 using System.Windows.Forms;
 
 namespace MemoryAnalyzer
@@ -13,7 +14,7 @@ namespace MemoryAnalyzer
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MemoryAnalyzer());
+            Application.Run(new Home());
         }
     }
 }
