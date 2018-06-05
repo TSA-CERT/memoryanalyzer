@@ -1,22 +1,25 @@
-# Memory Analyzer
+# Memory Analyzer v1.1
 
-The Memory Analyzer is a GUI for Rekall written in C#, automating queries and marking results based on filters.
+The Memory Analyzer is a GUI for Volatility and Rekall written in C#, automating queries and marking results based on filters.
 
 ## Quick start
 
-The Memory Analyzer is available as .exe for Windows or source-code for C# here. You also need Rekall itself from https://github.com/google/rekall installed.
+The Memory Analyzer is available as .exe for Windows or source-code for C# here. You also need Volatility (recommended) from http://www.volatilityfoundation.org/releases or Rekall itself from https://github.com/google/rekall installed.
 
-Analysis is started by selecting the Rekall binary and your Memory Image:
+Start the Memory Analyzer, select Volatility or Rekall binary (via Tools/Settings):
 
-![](images/Image_Selection.png)
+![](images/Analyzer_Selection_1.1.png)
 
-and results are shown once finished analyzing:
+Create a new project:
 
-![](images/Analyzer.png)
+![](images/Image_Selection_1.1.png)
+
+And execute commands:
+
+![](images/Analyzer_1.1.png)
+
 
 ## Configuration
-
-All configuration files are JSON encoded and located within the Memory Analyzer folder.
 
 ### Default Commands
 
